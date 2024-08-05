@@ -15,31 +15,32 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text("Flash Sniper"),
-            bottom: const TabBar(
-                labelPadding: EdgeInsets.symmetric(vertical: 5),
-                labelStyle: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: Color.fromARGB(255, 111, 25, 126)),
-                unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400),
-                tabs: [
-                  Tab(
-                    text: "STOCKS",
-                  ),
-                  Tab(
-                    text: "CRYPTOS",
-                  ),
-                  Tab(
-                    text: "SETTINGS",
-                  ),
-                ]),
-          ),
-          body: TabBarView(children: [
-            StockPage(),
-            CryptoPage(),
-            const SettingsPage(),
-          ])),
+        appBar: AppBar(
+          title: const Text("Flash Sniper"),
+          bottom: const TabBar(
+              labelPadding: EdgeInsets.symmetric(vertical: 5),
+              labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Color.fromARGB(255, 111, 25, 126)),
+              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400),
+              tabs: [
+                Tab(
+                  text: "STOCKS",
+                ),
+                Tab(
+                  text: "CRYPTOS",
+                ),
+                Tab(
+                  text: "SETTINGS",
+                ),
+              ]),
+        ),
+        body: TabBarView(children: [
+          StockPage(),
+          CryptoPage(),
+          const SettingsPage(),
+        ]),
+      ),
     );
   }
 }
