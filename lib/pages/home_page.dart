@@ -1,3 +1,6 @@
+import 'package:flash_sniper/pages/crypto_page.dart';
+import 'package:flash_sniper/pages/settings_page.dart';
+import 'package:flash_sniper/pages/stock_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,71 +10,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController _slController = TextEditingController();
-  final TextEditingController _targetController = TextEditingController();
-
-  void _getPosition() {}
-  void _exit() {}
-  void _refresh() {}
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Flash Sniper"),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _slController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter % of SL',
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text("Flash Sniper"),
+            bottom: const TabBar(
+                labelPadding: EdgeInsets.symmetric(vertical: 5),
+                labelStyle: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Color.fromARGB(255, 111, 25, 126)),
+                unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w400),
+                tabs: [
+                  Tab(
+                    text: "STOCKS",
                   ),
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _targetController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter % of Target',
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
+                  Tab(
+                    text: "CRYPTOS",
                   ),
-                ),
-              ],
-            ),
+                  Tab(
+                    text: "SETTINGS",
+                  ),
+                ]),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                ElevatedButton(
-                  onPressed: _getPosition,
-                  child: const Text('Get Position'),
-                ),
-                ElevatedButton(
-                  onPressed: _refresh,
-                  style: ElevatedButton.styleFrom(),
-                  child: const Text('Refresh'),
-                ),
-                ElevatedButton(
-                  onPressed: _exit,
-                  style: ElevatedButton.styleFrom(),
-                  child: const Text('Exit'),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+          body: TabBarView(children: [
+            StockPage(),
+            CryptoPage(),
+            const SettingsPage(),
+          ])),
     );
   }
 }
